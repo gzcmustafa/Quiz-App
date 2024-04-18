@@ -1,9 +1,9 @@
-function Soru(soruMetni,cevapSecenekleri,dogruCEvap) {
+function Soru(soruMetni,cevapSecenekleri,dogruCevap) {
     this.soruMetni = soruMetni;
     this.cevapSecenekleri = cevapSecenekleri;
-    this.dogruCEvap = dogruCEvap;
+    this.dogruCevap = dogruCevap;
     this.cevabiKontrolEt = function(cevap){
-        return cevap === this.dogruCEvap
+        return cevap === this.dogruCevap
     }
 }
 
@@ -24,12 +24,37 @@ Quiz.prototype.soruGetir = function (){
 const quiz = new Quiz(sorular);
 
 document.querySelector(".btn_start").addEventListener("click",function(){
-    if(quiz.sorular.length != quiz.soruIndex){
+    
         document.querySelector(".quiz_box").classList.add("active");
-        console.log(quiz.soruGetir());
+        soruGoster(quiz.soruGetir())
+    
+})
+
+document.querySelector(".next_btn").addEventListener("click",function(){
+    if(quiz.sorular.length != quiz.soruIndex + 1){
         quiz.soruIndex += 1;
+        soruGoster(quiz.soruGetir())
     }else{
         console.log("quiz bitti")
     }
+
 })
+
+function soruGoster(soru){
+    let question = `<span>${soru.soruMetni}</span>`;
+    let options = '';
+
+    for(let cevap in soru.cevapSecenekleri){
+        options += 
+        `
+           <div class="option">
+           <span><b>${cevap}</b>: ${soru.cevapSecenekleri[cevap]}</span>           
+           </div>
+        `;
+    }
+    document.querySelector(".question_text").innerHTML = question;
+    document.querySelector(".option_list").innerHTML = options;
+}
+
+
 
