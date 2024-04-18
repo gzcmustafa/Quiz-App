@@ -7,9 +7,6 @@ function Soru(soruMetni,cevapSecenekleri,dogruCEvap) {
     }
 }
 
-let soru1 = new Soru ("JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c")
-let soru2 = new Soru (".Net paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Nuget",c:"NPM"},"b")
-
 let sorular = [
     new Soru ("1-JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c"),
     new Soru ("2-JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c"),
@@ -26,8 +23,9 @@ Quiz.prototype.soruGetir = function (){
 }
 const quiz = new Quiz(sorular);
 
-document.querySelector(".btn-start").addEventListener("click",function(){
+document.querySelector(".btn_start").addEventListener("click",function(){
     if(quiz.sorular.length != quiz.soruIndex){
+        document.querySelector(".quiz_box").classList.add("active");
         console.log(quiz.soruGetir());
         quiz.soruIndex += 1;
     }else{
