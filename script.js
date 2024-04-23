@@ -1,90 +1,42 @@
-function Soru(soruMetni,cevapSecenekleri,dogruCevap) {
-    this.soruMetni = soruMetni;
-    this.cevapSecenekleri = cevapSecenekleri;
-    this.dogruCevap = dogruCevap;
-    this.cevabiKontrolEt = function(cevap){
-        return cevap === this.dogruCevap
-    }
-}
-
-let sorular = [
-    new Soru ("1-JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c"),
-    new Soru ("2-JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c"),
-    new Soru ("3-JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c"),
-    new Soru ("4-JavaScript paket yönetim uygulaması nedir ?",{a:"Node.js",b:"Typescript",c:"npm"},"c")
-]
-
-function Quiz(sorular){
-    this.sorular = sorular;
-    this.soruIndex = 0;
-}
-Quiz.prototype.soruGetir = function (){
-    return this.sorular[this.soruIndex]
-}
 const quiz = new Quiz(sorular);
+const ui = new UI();
 
-document.querySelector(".btn_start").addEventListener("click",function(){
-    
-        document.querySelector(".quiz_box").classList.add("active");
-        soruGoster(quiz.soruGetir())
-        document.querySelector(".next_btn").classList.remove("show")
-    
+ui.btn_start.addEventListener("click", function() {
+    ui.quiz_box.classList.add("active");
+    ui.soruGoster(quiz.soruGetir());
+    ui.soruSayisiniGoster(quiz.soruIndex + 1, quiz.sorular.length);
+    ui.btn_next.classList.remove("show");
 })
 
-document.querySelector(".next_btn").addEventListener("click",function(){
-    if(quiz.sorular.length != quiz.soruIndex + 1){
+ui.btn_next.addEventListener("click", function() {
+    if (quiz.sorular.length != quiz.soruIndex + 1) {
         quiz.soruIndex += 1;
-        soruGoster(quiz.soruGetir())
-        document.querySelector(".next_btn").classList.remove("show")
-    }else{
-        console.log("quiz bitti")
+        ui.soruGoster(quiz.soruGetir());
+        ui.soruSayisiniGoster(quiz.soruIndex + 1, quiz.sorular.length);
+        ui.btn_next.classList.remove("show");
+    } else {
+        console.log("quiz bitti");
     }
+});
 
-})
-const opiton_list = document.querySelector(".option_list")
-const correctIcon = '<div class="icon"><i class="fas fa-check"></i></div>';
-const incorrectIcon = '<div class="icon"><i class="fas fa-times"></i></div>';
-function soruGoster(soru){
-    let question = `<span>${soru.soruMetni}</span>`;
-    let options = '';
 
-    for(let cevap in soru.cevapSecenekleri){
-        options += 
-        `
-           <div class="option">
-           <span><b>${cevap}</b>: ${soru.cevapSecenekleri[cevap]}</span>           
-           </div>
-        `;
-    }
-
-    document.querySelector(".question_text").innerHTML = question;
-    opiton_list.innerHTML = options;
-
-    const option = opiton_list.querySelectorAll(".option");
-    
-    for (let opt of option){
-        opt.setAttribute("onclick","optionSelected(this)")
-    }
-}
-
-function optionSelected(option){
+function optionSelected(option) {
     let cevap = option.querySelector("span b").textContent;
     let soru = quiz.soruGetir();
 
-    if(soru.cevabiKontrolEt(cevap)){
-        option.classList.add("correct")
-        option.insertAdjacentHTML("beforeend",correctIcon)
+    if(soru.cevabiKontrolEt(cevap)) {
+        option.classList.add("correct");
+        option.insertAdjacentHTML("beforeend", ui.correctIcon);
     } else {
         option.classList.add("incorrect");
-        option.insertAdjacentHTML("beforeend",incorrectIcon)
-
+        option.insertAdjacentHTML("beforeend", ui.incorrectIcon);
     }
 
-    for ( let i = 0; i<opiton_list.children.length; i++) {
-        opiton_list.children[i].classList.add("disabled")
+    for(let i=0; i < ui.option_list.children.length; i++) {
+        ui.option_list.children[i].classList.add("disabled");
     }
-    document.querySelector(".next_btn").classList.add("show")
+
+    ui.btn_next.classList.add("show");
 }
-
 
 
