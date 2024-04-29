@@ -1,5 +1,6 @@
 .btn_start,
-.quiz_box {
+.quiz_box,
+.score_box {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,28 +10,27 @@
 .quiz_box.active {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1.2);
 
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .quiz_box {
-    width: 500px;
+    width: 550px;
 
-    transform: translate(-50%, -50%) scale(0.8);
-    transition: all 1.7s ease;
-
+    transform: translate(-50%, -50%) scale(0.7);
+        transition: all 0.3s ease;
 
     opacity: 0;
     pointer-events: none;
 }
 
 .quiz_box header .title {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
 }
 
 .quiz_box .question_text {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .quiz_box .option_list .option:hover {
-    color: wheat;
-    background: #31107e
+    color: #112B2C;
+        background: #FFD33D;
 }
 
 .quiz_box .option_list .option.correct {
@@ -65,6 +65,7 @@
     color: #721c24;
     background: #f8d7da;
 }
+
 .quiz_box .option_list .option.disabled {
     pointer-events: none;
 }
@@ -72,14 +73,80 @@
 .quiz_box .next_btn {
     opacity: 0;
     pointer-events: none;
+transform: scale(0.9);
+    transition: all 0.3s ease;
 }
 
 .quiz_box .next_btn.show {
     opacity: 1;
     pointer-events: auto;
+    transform: scale(1);
 }
+
 .quiz_box footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+/* timer */
+.quiz_box header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quiz_box header .timer {
+    display: flex;
+    align-items: center;
+    background: #143F68;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.quiz_box header .timer .time_text {
+    font-size: 14px;
+}
+
+.quiz_box header .timer .time_second {
+    background: #F0A500;
+    border-radius: 3px;
+    padding: 3px;
+    margin-left: 3px;
+    width: 25px;
+    text-align: center;
+}
+
+/* score box */
+.score_box.active {
+    opacity: 1;
+    pointer-events: auto;
+
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.score_box {
+    width: 550px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: all 0.3s ease;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.score_box .icon {
+    font-size: 90px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.score_box .score_text {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }

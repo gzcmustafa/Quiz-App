@@ -10,45 +10,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="btn_start">
-        <button class="btn btn-success" >Start Quiz</button>
+        <button class="btn btn-warning btn-lg">Start Quiz</button>
     </div>
 
-    <div class="card quiz_box ">
-        <header class="card-header bg-warning">
+    <div class="card quiz_box">
+        <header class="card-header">
             <div class="title">Quiz App</div>
+            <div class="timer">
+                <div class="time_text">Kalan Süre</div>
+                <div class="time_second">10</div>
+            </div>
         </header>
         <section class="card-body">
             <div class="question_text">
-                <!-- <span>JavaScript paket yönetim uygulaması nedir ?</span> -->
+                <!-- <span>Hangisi javascript paket yönetim uygulasıdır?</span> -->
             </div>
             <div class="option_list">
                 <!-- <div class="option">
-                    <span>A: Node.js</span>
+                    <span>a: Node.js</span>
                     <div class="icon"><i class="fas fa-check"></i></div>
                 </div>
-                <div class="option ">
-                    <span>B: Typescript</span>
+                <div class="option">
+                    <span>b: Typescript</span>
                     <div class="icon"><i class="fas fa-times"></i></div>
                 </div>
                 <div class="option correct">
-                    <span>C: npm</span>
+                    <span>c: Npm</span>
                     <div class="icon"><i class="fas fa-times"></i></div>
                 </div>
                 <div class="option incorrect">
-                    <span>D: Nuget</span>
+                    <span>d: Nuget</span>
                     <div class="icon"><i class="fas fa-times"></i></div>
                 </div> -->
-                
             </div>
         </section>
         <footer class="card-footer">
-            <div class="quesiton_index">
-               
+            <div class="question_index">            
             </div>
-            <button class="next_btn btn btn-success btn-sm">Sonraki Soru</button>
+            <button class="next_btn btn btn-primary btn-sm">Sonraki Soru</button>
         </footer>
     </div>
+
+    <div class="card score_box">
+        <div class="icon"><i class="fas fa-crown"></i></div>
+        <div class="score_text"></div>
+        <div class="buttons">
+            <button class="btn btn-primary btn_replay">Tekrar Başlat</button>
+            <button class="btn btn-primary btn_quit">Testi Bitir</button>
+        </div>
+    </div>
+    
 
     <script src="soru.js"></script>
     <script src="quiz.js"></script>
